@@ -3,10 +3,10 @@
 int main(int arg, char* argc[]){
 
   int a;
-  int *b;
+  int* b;
   long c;
-  double *d;
-  char **e;
+  double* d;
+  char** e;
 
   printf("size of a %lu \n", sizeof(a));
   printf("size of b %lu \n", sizeof(b));
@@ -14,4 +14,5 @@ int main(int arg, char* argc[]){
   printf("size of b %lu \n", sizeof(d));
   printf("size of b %lu \n", sizeof(e));
   
+  return 0;
 }
