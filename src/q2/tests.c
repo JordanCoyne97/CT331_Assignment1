@@ -21,5 +21,7 @@ void runTests(){
   traverse(l);
   printf("\n");
 
+  printf("size of the array %d", length(l));
+
   printf("\nTests complete.\n");
 }

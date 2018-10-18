@@ -18,7 +18,7 @@ listElement* createEl(char* data, size_t size){
     return NULL; //return NULL to indicate an error.
   }
   char* dataPointer = malloc(sizeof(char)*size);
-  if(dataPointer == NULL){
+    if(dataPointer == NULL){
     //malloc has had an error
     free(e); //release the previously allocated memory
     return NULL; //return NULL to indicate an error.
@@ -47,6 +47,24 @@ listElement* insertAfter(listElement* el, char* data, size_t size){
   newEl->next = next;
   el->next = newEl;
   return newEl;
+}
+
+void push(listElement** list, char* data, size_t size){
+     
+}
+
+int length(listElement* list){
+    
+  listElement* cur = list;
+  int size = 0;
+
+  while (cur != 0)
+  {
+    ++size;
+    cur = cur->next;
+  }
+
+  return size;
 }
 
 
