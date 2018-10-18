@@ -8,11 +8,11 @@ int main(int arg, char* argc[]){
   double* d;
   char** e;
 
-  printf("size of a %lu \n", sizeof(a));
-  printf("size of b %lu \n", sizeof(b));
-  printf("size of c %ld \n", sizeof(c));
-  printf("size of d %lu \n", sizeof(d));
-  printf("size of e %lu \n", sizeof(e));
+  printf("size of A %lu \n", sizeof(a));
+  printf("size of B %lu \n", sizeof(b));
+  printf("size of C %ld \n", sizeof(c));
+  printf("size of D %lu \n", sizeof(d));
+  printf("size of E %lu \n", sizeof(e));
   
   return 0;
 }
