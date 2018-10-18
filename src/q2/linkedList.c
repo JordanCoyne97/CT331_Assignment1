@@ -50,24 +50,59 @@ listElement* insertAfter(listElement* el, char* data, size_t size){
 }
 
 void push(listElement** list, char* data, size_t size){
+
+    listElement *newElement = createEl(data, size);
+    newElement-> next = *list;
+    *list = newElement;
      
 }
 
-int length(listElement* list){
+int length(listElement* list){  //gets the current size of the linked list
     
-  listElement* cur = list;
-  int size = 0;
+    listElement* cur = list;
+    int size = 0;
 
-  while (cur != 0)
-  {
-    ++size;
-    cur = cur->next;
-  }
+    while (cur != 0) {
+       ++size;
+       cur = cur->next;
+    }
 
   return size;
 }
 
+listElement* pop(listElement** list){
 
+    listElement *headElement = *list;
+    
+    if(headElement) {
+        *list = headElement-> next;
+    }
+    
+    return headElement;
+}
+
+void enqueue(listElement **list, char *dataBits, size_t size) {
+    
+    listElement *newElement = createEl(dataBits, size);
+    newElement-> next = *list;
+    *list = newElement;
+    
+}
+
+listElement *dequeue(listElement *list) {
+    listElement *temp = list;
+    
+    
+    while((temp-> next)-> next != NULL) { //finds the tail element
+        temp = temp-> next;
+    }
+    
+    listElement *tailElement = temp-> next; //go to the tail
+    temp-> next = NULL; //delete the tail
+    
+    return tailElement;
+    
+}
 //Delete the element after the given el
 void deleteAfter(listElement* after){
   listElement* delete = after->next;
