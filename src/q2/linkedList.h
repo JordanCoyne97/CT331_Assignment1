@@ -19,6 +19,7 @@ listElement* pop(listElement** list);
 void enqueue(listElement** list, char* data, size_t size);
 
 listElement* dequeue(listElement* list);
+
 //Inserts a new element after the given el
 //Returns the pointer to the new element
 listElement* insertAfter(listElement* after, char* data, size_t size);
