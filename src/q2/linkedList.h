@@ -1,6 +1,6 @@
 #ifndef CT331_ASSIGNMENT_LINKED_LIST
 #define CT331_ASSIGNMENT_LINKED_LIST
-
+//
 typedef struct listElementStruct listElement;
 
 //Creates a new linked list element with given content of size
