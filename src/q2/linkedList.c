@@ -81,9 +81,9 @@ listElement* pop(listElement** list){
     return headElement;
 }
 
-void enqueue(listElement **list, char *dataBits, size_t size) {
+void enqueue(listElement **list, char *data, size_t size) {
     
-    listElement *newElement = createEl(dataBits, size);
+    listElement *newElement = createEl(data, size);
     newElement-> next = *list;
     *list = newElement;
     
