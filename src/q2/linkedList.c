@@ -12,7 +12,7 @@ typedef struct listElementStruct{
 //Creates a new linked list element with given content of size
 //Returns a pointer to the element
 listElement* createEl(char* data, size_t size){
-  listElement* e = malloc(sizeof(listElement));
+  listElement* element = malloc(sizeof(listElement));
   if(e == NULL){
     //malloc has had an error
     return NULL; //return NULL to indicate an error.
@@ -20,19 +20,20 @@ listElement* createEl(char* data, size_t size){
   char* dataPointer = malloc(sizeof(char)*size);
     if(dataPointer == NULL){
     //malloc has had an error
-    free(e); //release the previously allocated memory
+    free(element); //release the previously allocated memory
     return NULL; //return NULL to indicate an error.
   }
   strcpy(dataPointer, data);
-  e->data = dataPointer;
-  e->size = size;
-  e->next = NULL;
-  return e;
+  element->data = dataPointer;
+  element->size = size;
+  element->next = NULL;
+  return element;
 }
 
 //Prints out each element in the list
 void traverse(listElement* start){
   listElement* current = start;
+
   while(current != NULL){
     printf("%s\n", current->data);
     current = current->next;
@@ -41,12 +42,12 @@ void traverse(listElement* start){
 
 //Inserts a new element after the given el
 //Returns the pointer to the new element
-listElement* insertAfter(listElement* el, char* data, size_t size){
-  listElement* newEl = createEl(data, size);
-  listElement* next = el->next;
-  newEl->next = next;
-  el->next = newEl;
-  return newEl;
+listElement* insertAfter(listElement* element, char* data, size_t size){
+  listElement* newElement = createEl(data, size);
+  listElement* next = element->next;
+  newElement->next = next;
+  element->next = newElement;
+  return newElement;
 }
 
 void push(listElement** list, char* data, size_t size){
@@ -59,12 +60,12 @@ void push(listElement** list, char* data, size_t size){
 
 int length(listElement* list){  //gets the current size of the linked list
     
-    listElement* cur = list;
+    listElement* current = list;
     int size = 0;
 
     while (cur != 0) {
        ++size;
-       cur = cur->next;
+       current = current->next;
     }
 
   return size;
