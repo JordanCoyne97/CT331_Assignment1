@@ -13,7 +13,7 @@ void testFunction1(){
     
     printf("Dequeue \n");
     dequeue(list);
-    insertAfter(list, "Element (c)", 30);  //creates element and inserts it after
+    insertAfter(list, "Element (c)", 30);  
     traverse(list);
     length(list);
   
