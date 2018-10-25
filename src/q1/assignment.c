@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main(int arg, char* argc[]){
-
+  
+  //question1
   int a;
   int* b;
   long c;
