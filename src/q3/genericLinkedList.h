@@ -1,28 +1,34 @@
-typedef void (*printer) (void *info);
+#ifndef CT331_ASSIGNMENT_1
+#define CT331_ASSIGNMENT_1
 
-typedef struct genericListElementStruct {
-    void *info;
-    size_t size;
-    print printFunc;
-    struct genericListElementStruct *next;
+typedef void (*printString) (void *data);
+
+typedef struct genericListElementStruct{
+  void *data;
+  size_t size;
+  printString print;
+  struct genericListElementStruct *next;
 } genericListElement;
-
-genericListElement *createEl(void *info, size_t size, printer);
 
 int length(genericListElement *list);
 
-void push(genericListElement **list, void *info, size_t size, printer);
+
+void push(genericListElement **list, void *data, size_t size, printString);
 
 genericListElement *pop(genericListElement **list);
 
-void enqueue(genericListElement **list, void *info, size_t size, printer);
+void enqueue(genericListElement **list, void *data, size_t size, printString);
 
 genericListElement *dequeue(genericListElement *list);
 
-void traverse(genericListElement *beginning);
+genericListElement *createEl(void *data, size_t size, printString);
 
-genericListElement* insertAfter(genericListElement* ele, void *info, size_t size, printer);
+void traverse(genericListElement *start);
 
-void deleteAfter(genericListElement* afterEle);
+genericListElement* insertAfter(genericListElement* after, void *data, size_t size, printString);
+
+void deleteAfter(genericListElement* after);
+
 
 #endif
+

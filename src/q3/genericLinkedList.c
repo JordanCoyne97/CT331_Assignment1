@@ -3,118 +3,97 @@
 #include <string.h>
 #include "genericLinkedList.h"
 
-genericListElement *createEl(void *info, size_t size, printer printFunc) {
-    
-    genericListElement* ele = malloc(sizeof(genericListElement));
-    
-    //Error in malloc
-    if(ele == NULL) {
-        return NULL;
-    }
-    
-    void *dataPointer = malloc(size);
-    
-    //Error in malloc, free up the space
-    if(dataPointer == NULL) {
-        free(ele);
-        return NULL;
-    }
-    
-    memmove(dataPointer, info, size);
-    
-    ele->info = dataPointer;
-    ele->size = size;
-    ele->print = printFunc;
-    ele->next = NULL;
-    
-    return ele;
-    
-}
 
-int length(genericListElement *list) {
+int length(genericListElement* list){  //gets the current size of the linked list
     
-    genericListElement *currEle = list;
-    int counter = 0;
-    
-    while(currEle != NULL) {
-        counter++;
-        currEle = currEle->next;
-    }
-    
-    return printf("# of elements in the list: %d \n", counter);
-    
-}
+    genericListElement* current = list;
+    int size = 0;
 
-void push(genericListElement **list, void *info, size_t size, printer printFunc) {
-    
-    genericListElement *newEle = createEL(info, size, printFunc);
-    
-    newEle->next = *list;
-    
-    *list = newEle;
-    
+    while (current != 0) {
+       ++size;
+       current = current->next;
+    }
+  printf("Size of list = %d\n", size );
+  return size;
+}
+void push(genericListElement **list, void *data, size_t size, printString print) {
+   
+    genericListElement *newElement = createEl(data, size, print);
+    newElement->next = *list;
+    *list = newElement;
+    //printf("Pushing %s\n",data );
 }
 
 genericListElement *pop(genericListElement **list) {
-    genericListElement *headEle = *list;
-    
-    if(headEle) {
-        *list = headEle->next;
+    genericListElement *headElement = *list;
+    if (headElement) {
+        *list = headElement->next; 
     }
-    
-    return headEle;
+    return headElement;
 }
 
-void enqueue(genericListElement **list, void *info, size_t size, printer printFunc) {
-    genericListElement *newEle = createEL(info, size, printFunc);
-    
-    newEle->next = *list;
-    
-    *list = newEle;
+
+void enqueue(genericListElement **list, void *data, size_t size, printString print) {
+
+    genericListElement *newElement = createEl(data, size, print);
+    newElement->next = *list;
+    *list = newElement;
 }
 
 genericListElement *dequeue(genericListElement *list) {
     genericListElement *temp = list;
     
-    while((temp-> next)-> next != NULL) {
-        temp = temp->next;
+    while((temp->next)->next != NULL) {
+       temp = temp->next;
     }
-    
-    genericListElement *tailEle = temp->next;
+    genericListElement *tailElement = temp->next;
     temp->next = NULL;
-    
-    return tailEle;
-    
+    return tailElement;
 }
 
-void traverse(genericListElement *beginning) {
-    genericListElement *currEle = beginning;
-    
-    while(currEle != NULL) {
-        currEle-> printFunc(currEle->info);
-        currEle = currEle->next;
-    }
-    
+genericListElement *createEl(void *data, size_t size, printString print){
+  genericListElement* e = malloc(sizeof(genericListElement));
+  if(e == NULL){
+    return NULL; 
+  }
+  void *dataPointer = malloc(size);
+  if(dataPointer == NULL){
+    free(e); 
+    return NULL;
+  }
+  memmove(dataPointer, data, size);
+  e->data = dataPointer;
+  e->size = size;
+  e->print = print; 
+  e->next = NULL;
+  //printf("Creating %s\n",data );
+  return e;
 }
 
-genericListElement* insertAfter(genericListElement* ele, void *info, size_t size, printer printFunc) {
-    
-    genericListElement* newEle = createEl(info, size, printFunc);
-    
-    genericListElement* next = ele->next;
-    
-    newEle->next = next;
-    ele->next = newEle;
-    
-    return newEle;
-    
+void traverse(genericListElement *start){
+  genericListElement *current = start;
+
+  while(current != NULL){
+    //printf("Traversing the list, %s\n", current->data);
+    current->print(current->data);
+    current = current->next;
+  }
 }
 
-void deleteAfter(genericListElement* afterEle) {
-    genericListElement* deleteEle = afterEle->next;
-    genericListElement* newNextEle = deleteEle->next;
-    afterEle->next = newNextEle;
-    
-    free(deleteEle->info);
-    free(deleteEle);
+genericListElement* insertAfter(genericListElement* el, void *data, size_t size, printString print){
+  genericListElement* newEl = createEl(data, size, print);
+  genericListElement* next = el->next;
+  newEl->next = next;
+  el->next = newEl;
+  //printf("Inserting after: %s\n",data );
+  return newEl;
+}
+
+void deleteAfter(genericListElement* after){
+  genericListElement* delete = after->next;
+  genericListElement* newNext = delete->next;
+  after->next = newNext;
+
+  free(delete->data);
+  free(delete);
 }
