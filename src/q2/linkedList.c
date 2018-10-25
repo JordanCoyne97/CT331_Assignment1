@@ -13,7 +13,7 @@ typedef struct listElementStruct{
 //Returns a pointer to the element
 listElement* createEl(char* data, size_t size){
   listElement* element = malloc(sizeof(listElement));
-  if(e == NULL){
+  if(element == NULL){
     //malloc has had an error
     return NULL; //return NULL to indicate an error.
   }
@@ -27,6 +27,7 @@ listElement* createEl(char* data, size_t size){
   element->data = dataPointer;
   element->size = size;
   element->next = NULL;
+  printf("Creating %s\n",data );
   return element;
 }
 
@@ -35,7 +36,7 @@ void traverse(listElement* start){
   listElement* current = start;
 
   while(current != NULL){
-    printf("%s\n", current->data);
+    printf("Traversing the list, %s\n", current->data);
     current = current->next;
   }
 }
@@ -47,6 +48,7 @@ listElement* insertAfter(listElement* element, char* data, size_t size){
   listElement* next = element->next;
   newElement->next = next;
   element->next = newElement;
+  printf("Inserting after: %s\n",data );
   return newElement;
 }
 
@@ -55,6 +57,7 @@ void push(listElement** list, char* data, size_t size){
     listElement *newElement = createEl(data, size);
     newElement-> next = *list;
     *list = newElement;
+    printf("Pushing %s\n",data );
      
 }
 
@@ -63,11 +66,11 @@ int length(listElement* list){  //gets the current size of the linked list
     listElement* current = list;
     int size = 0;
 
-    while (cur != 0) {
+    while (current != 0) {
        ++size;
        current = current->next;
     }
-
+  printf("Size of list = %d\n", size );
   return size;
 }
 

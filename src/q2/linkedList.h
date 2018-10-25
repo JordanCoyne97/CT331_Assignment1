@@ -27,4 +27,3 @@ listElement* insertAfter(listElement* after, char* data, size_t size);
 void deleteAfter(listElement* after);
 
 
-#endif

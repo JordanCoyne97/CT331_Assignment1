@@ -2,26 +2,55 @@
 #include "tests.h"
 #include "linkedList.h"
 
+void testFunction1(){
+    //tests queues
+    printf("Testing Queues\n");
+    listElement *list = createEl("Element (a)", 30); //creates
+    traverse(list);   //reads the list
+
+    enqueue(&list, "Element (b)", 30);
+    traverse(list);
+    
+    printf("Dequeue \n");
+    dequeue(list);
+    insertAfter(list, "Element (c)", 30);  //creates element and inserts it after
+    traverse(list);
+    length(list);
+  
+    printf("Delete after\n");
+    deleteAfter(list);
+    traverse(list);
+    length(list);
+    printf("\n");
+}
+
+void testFunction2(){ 
+    //tests stack
+    printf("Testing stacks\n");
+    listElement *list = createEl("Element (e)", 30);
+    traverse(list);
+    length(list);
+    
+    push(&list, "Element (f)", 30);
+    insertAfter(list, "Element (g)", 30);
+    push(&list, "Element (h)", 30);
+    traverse(list);
+    length(list);
+    
+    printf("Popping an element\n");
+    pop(&list);
+    traverse(list);
+    length(list);
+
+    printf("Deleting after\n");
+    deleteAfter(list);
+    traverse(list);
+    length(list);
+}
+
 void runTests(){
-  printf("Tests running...\n");
-  listElement* l = createEl("Test String (1).", 30);
-  //printf("%s\n%p\n", l->data, l->next);
-  //Test create and traverse
-  traverse(l);
-  printf("\n");
-
-  //Test insert after
-  listElement* l2 = insertAfter(l, "another string (2)", 30);
-  insertAfter(l2, "a final string (3)", 30);
-  traverse(l);
-  printf("\n");
-
-  // Test delete after
-  deleteAfter(l);
-  traverse(l);
-  printf("\n");
-
-  printf("size of the array %d", length(l));
+  testFunction1();
+  testFunction2();
 
   printf("\nTests complete.\n");
 }
